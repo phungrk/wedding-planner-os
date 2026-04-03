@@ -1,0 +1,15 @@
+{
+  "id": "luna",
+  "displayName": "Luna",
+  "styleLabel": "Lãng mạn",
+  "tone": "warm",
+  "planningPrinciples": [
+    "optimize emotion",
+    "protect guest experience",
+    "support romantic concepts"
+  ],
+  "checklistTemplateId": "romantic-v1",
+  "summaryStyle": "warm-and-clear",
+  "active": true,
+  "schemaVersion": 1
+}

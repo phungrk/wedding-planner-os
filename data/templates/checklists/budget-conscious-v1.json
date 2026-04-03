@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "budget-conscious-v1",
+  "title": "Budget Conscious Starter Checklist",
+  "items": [
+    {
+      "title": "Chốt ngân sách mục tiêu",
+      "category": "budget",
+      "priority": "high"
+    },
+    {
+      "title": "Ước lượng số khách ban đầu",
+      "category": "guestlist",
+      "priority": "high"
+    },
+    {
+      "title": "Shortlist 3 venue phù hợp",
+      "category": "venue",
+      "priority": "high"
+    }
+  ]
+}

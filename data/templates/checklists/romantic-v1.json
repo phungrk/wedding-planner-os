@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "romantic-v1",
+  "title": "Romantic Starter Checklist",
+  "items": [
+    {
+      "title": "Chốt concept cảm xúc tổng thể",
+      "category": "concept",
+      "priority": "high"
+    },
+    {
+      "title": "Ước lượng số khách ban đầu",
+      "category": "guestlist",
+      "priority": "high"
+    },
+    {
+      "title": "Shortlist venue hợp concept",
+      "category": "venue",
+      "priority": "high"
+    }
+  ]
+}

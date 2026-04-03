@@ -1,0 +1,15 @@
+{
+  "id": "mina",
+  "displayName": "Mina",
+  "styleLabel": "Tiết kiệm",
+  "tone": "practical",
+  "planningPrinciples": [
+    "prioritize must-have",
+    "avoid waste",
+    "optimize cost-effectiveness"
+  ],
+  "checklistTemplateId": "budget-conscious-v1",
+  "summaryStyle": "clear-and-concise",
+  "active": true,
+  "schemaVersion": 1
+}
