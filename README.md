@@ -7,7 +7,8 @@ MVP skeleton cho Wedding Planner OS theo hướng:
 
 ## Đã có trong skeleton này
 - Fastify server
-- Telegram webhook endpoint mock: `POST /telegram/webhook`
+- Telegram webhook endpoint: `POST /telegram/webhook`
+- Telegram sender thật qua Bot API (nếu có `TELEGRAM_BOT_TOKEN`)
 - file state gateway cho users + weddings
 - planner switching (`mina`, `luna`)
 - profile extraction cơ bản từ chat:
@@ -54,10 +55,10 @@ find data -maxdepth 4 -type f | sort
 ```
 
 ## Cần build tiếp
-- Telegram sender thật (gửi outbound qua Bot API)
 - webhook secret validation
 - reminders
 - decision logs
 - latest-state optimization tốt hơn
 - admin/debug routes
 - contract tool layer cho OpenClaw gọi domain commands rõ hơn
+- setWebhook helper / Telegram setup script

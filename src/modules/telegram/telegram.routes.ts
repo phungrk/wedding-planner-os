@@ -1,39 +1,29 @@
 import type { FastifyInstance } from 'fastify';
 import { PlannerService } from '../planner/planner.service.js';
+import { TelegramSender } from './telegram.sender.js';
+import type { TelegramUpdate } from './telegram.types.js';
+import { extractTelegramMessage } from './telegram.webhook.js';
 
 const planner = new PlannerService();
-
-interface TelegramUpdate {
-  message?: {
-    text?: string;
-    from?: {
-      id: number;
-      first_name?: string;
-      username?: string;
-    };
-    chat?: {
-      id: number;
-    };
-  };
-}
+const sender = new TelegramSender();
 
 export async function registerTelegramRoutes(app: FastifyInstance): Promise<void> {
   app.post('/telegram/webhook', async (request, reply) => {
     const body = request.body as TelegramUpdate;
-    const message = body.message;
+    const extracted = extractTelegramMessage(body);
 
-    if (!message?.text || !message.from?.id || !message.chat?.id) {
+    if (!extracted) {
       return reply.send({ ok: true, ignored: true });
     }
 
-    const result = await planner.handleTelegramMessage({
-      platformUserId: String(message.from.id),
-      platformChatId: String(message.chat.id),
-      displayName: message.from.first_name ?? 'Unknown',
-      username: message.from.username,
-      text: message.text
-    });
+    const result = await planner.handleTelegramMessage(extracted);
 
-    return reply.send({ ok: true, reply: result.reply, workspaceId: result.workspaceId });
+    try {
+      await sender.sendText(extracted.platformChatId, result.reply);
+    } catch (error) {
+      request.log.error({ err: error }, 'Failed to send Telegram reply');
+    }
+
+    return reply.send({ ok: true, reply: result.reply, workspaceId: result.workspaceId, deliveredToTelegram: true });
   });
 }
