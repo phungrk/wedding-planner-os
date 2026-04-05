@@ -16,14 +16,16 @@ export async function registerTelegramRoutes(app: FastifyInstance): Promise<void
       return reply.send({ ok: true, ignored: true });
     }
 
-    const result = await planner.handleTelegramMessage(extracted);
+    const result = await planner.handleTelegramMessageFromTelegram(extracted);
 
+    let deliveredToTelegram = true;
     try {
       await sender.sendText(extracted.platformChatId, result.reply);
     } catch (error) {
+      deliveredToTelegram = false;
       request.log.error({ err: error }, 'Failed to send Telegram reply');
     }
 
-    return reply.send({ ok: true, reply: result.reply, workspaceId: result.workspaceId, deliveredToTelegram: true });
+    return reply.send({ ok: true, reply: result.reply, workspaceId: result.workspaceId, deliveredToTelegram });
   });
 }
